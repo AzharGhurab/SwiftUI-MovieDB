@@ -22,10 +22,3 @@ enum MovieAccountAction: Sendable {
     case watchlist
 }
 
-// MARK: - User List
-
-struct UserList: Identifiable, Hashable, Sendable {
-    let id: Int
-    let name: String
-    let itemCount: Int
-}

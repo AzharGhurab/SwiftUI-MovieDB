@@ -20,6 +20,7 @@ final class AuthViewModel: ObservableObject {
     @Published private(set) var authState: AuthState = .unauthenticated
     @Published var errorMessage: String?
     @Published var authorizationURL: URL?
+    @Published private(set) var isSigningIn = false
 
     private(set) var pendingRequestToken: String?
 
@@ -108,9 +109,17 @@ final class AuthViewModel: ObservableObject {
     // MARK: - TMDB Sign In
 
     func startTMDBSignIn() async {
-        guard !isLoading else { return }
+        guard !isLoading, !isSigningIn else { return }
 
-        authState = .loading
+        let staysOnMainFlow = authState == .guest
+
+        isSigningIn = true
+        defer { isSigningIn = false }
+
+        if !staysOnMainFlow {
+            authState = .loading
+        }
+
         errorMessage = nil
         authorizationURL = nil
         pendingRequestToken = nil
@@ -128,11 +137,16 @@ final class AuthViewModel: ObservableObject {
             pendingRequestToken = token
             authorizationURL = url
 
-            authState = .unauthenticated
+            if !staysOnMainFlow {
+                authState = .unauthenticated
+            }
 
         } catch {
             errorMessage = error.localizedDescription
-            authState = .unauthenticated
+
+            if !staysOnMainFlow {
+                authState = .unauthenticated
+            }
         }
     }
 
@@ -143,12 +157,20 @@ final class AuthViewModel: ObservableObject {
             return
         }
 
-        authState = .loading
+        let staysOnMainFlow = authState == .guest
+
+        isSigningIn = true
+
+        if !staysOnMainFlow {
+            authState = .loading
+        }
+
         errorMessage = nil
 
         defer {
             pendingRequestToken = nil
             authorizationURL = nil
+            isSigningIn = false
         }
 
         do {
@@ -170,11 +192,13 @@ final class AuthViewModel: ObservableObject {
             authState = .authenticated
 
         } catch {
-            authState = .unauthenticated
+            if !staysOnMainFlow {
+                authState = .unauthenticated
+            }
+
             errorMessage = error.localizedDescription
         }
     }
-
     // MARK: - Sign Out
 
     func signOut() {

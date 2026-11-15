@@ -61,6 +61,23 @@ final class DefaultAccountRepository: AccountRepository {
 
         return response.accountID
     }
+    // MARK: - Fetch User Profile
+
+    func fetchUserProfile(
+        sessionID: String
+    ) async throws -> UserProfile {
+
+        try validateSession(sessionID)
+
+        let response: AccountDetailsResponseDTO =
+            try await client.request(
+                AccountEndpoint.accountDetails(
+                    sessionID: sessionID
+                )
+            )
+
+        return response.toDomain()
+    }
 
     // MARK: - Movie Account States
 
@@ -131,11 +148,32 @@ final class DefaultAccountRepository: AccountRepository {
             UserList(
                 id: list.id,
                 name: list.name,
-                itemCount: list.itemCount
+                description: list.description ?? "",
+                itemCount: list.itemCount,
+                posterPath: list.posterPath,
+                updatedAt: nil
             )
         }
     }
+    // MARK: - Fetch List Details
 
+    func fetchListDetails(
+        listID: Int,
+        sessionID: String
+    ) async throws -> UserListDetails {
+
+        try validateSession(sessionID)
+
+        let response: ListDetailsResponseDTO =
+            try await client.request(
+                AccountEndpoint.listDetails(
+                    listID: listID,
+                    sessionID: sessionID
+                )
+            )
+
+        return response.toDomain()
+    }
     // MARK: - Create List
 
     func createList(
@@ -166,6 +204,25 @@ final class DefaultAccountRepository: AccountRepository {
         }
 
         return listID
+    }
+    // MARK: - Delete List
+
+    func deleteList(
+        listID: Int,
+        sessionID: String
+    ) async throws {
+
+        try validateSession(sessionID)
+
+        let response: AccountStatusResponseDTO =
+            try await client.request(
+                AccountEndpoint.deleteList(
+                    listID: listID,
+                    sessionID: sessionID
+                )
+            )
+
+        try validateStatus(response)
     }
 
     // MARK: - Add Movie to List
@@ -244,7 +301,9 @@ private struct UserListsResponseDTO: Decodable {
 private struct UserListItemDTO: Decodable {
     let id: Int
     let name: String
+    let description: String?
     let itemCount: Int
+    let posterPath: String?
 }
 
 // MARK: - Create List Response DTO
@@ -252,6 +311,7 @@ private struct UserListItemDTO: Decodable {
 private struct CreateUserListResponseDTO: Decodable {
     let statusCode: Int
     let statusMessage: String
-    let listID: Int?
-}
+    let listId: Int?
 
+    var listID: Int? { listId }
+}

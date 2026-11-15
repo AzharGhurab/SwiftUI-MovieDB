@@ -16,6 +16,8 @@ struct MainTabBarView: View {
     // MARK: - Dependencies
 
     @State private var homeContainer = HomeDIContainer()
+    @State private var searchContainer = SearchDIContainer()
+    @State private var profileContainer = ProfileDIContainer()
 
     // MARK: - Body
 
@@ -29,27 +31,20 @@ struct MainTabBarView: View {
                     Label("Home", systemImage: "house")
                 }
 
-            // MARK: - Movies Tab
+            // MARK: - Search Tab
 
-            NavigationStack {
-                Text("Movies Screen")
-                    .navigationTitle("Movies")
-            }
-            .tabItem {
-                Label("Movies", systemImage: "magnifyingglass")
-            }
+            searchContainer.makeSearchFlowView()
+                .tabItem {
+                    Label("Search", systemImage: "magnifyingglass")
+                }
 
             // MARK: - Profile Tab
 
-            NavigationStack {
-                Text("Profile Screen")
-                    .navigationTitle("Profile")
-            }
-            .tabItem {
-                Label("Profile", systemImage: "person")
-            }
+            profileContainer.makeProfileFlowView()
+                .tabItem {
+                    Label("Profile", systemImage: "person")
+                }
         }
         .tint(AppTheme.accent)
     }
 }
-

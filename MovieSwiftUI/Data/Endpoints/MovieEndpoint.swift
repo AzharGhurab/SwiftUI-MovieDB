@@ -14,6 +14,7 @@ enum MovieEndpoint: APIEndpoint {
 
     case list(category: MovieCategory, page: Int)
     case details(id: Int)
+    case search(query: String, page: Int)
 
     // MARK: - Path
 
@@ -24,6 +25,9 @@ enum MovieEndpoint: APIEndpoint {
 
         case .details(let id):
             return "movie/\(id)"
+
+        case .search:
+            return "search/movie"
         }
     }
 
@@ -31,7 +35,7 @@ enum MovieEndpoint: APIEndpoint {
 
     var method: HTTPMethod {
         switch self {
-        case .list, .details:
+        case .list, .details, .search:
             return .get
         }
     }
@@ -45,6 +49,13 @@ enum MovieEndpoint: APIEndpoint {
 
         case .details:
             return []
+
+        case .search(let query, let page):
+            return [
+                URLQueryItem(name: "query", value: query),
+                URLQueryItem(name: "page", value: String(page)),
+                URLQueryItem(name: "include_adult", value: "false")
+            ]
         }
     }
 }

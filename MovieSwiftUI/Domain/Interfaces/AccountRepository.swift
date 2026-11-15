@@ -20,6 +20,11 @@ protocol AccountRepository: Sendable {
         sessionID: String
     ) async throws -> MovieAccountStates
 
+    // MARK: - Account Profile
+
+    func fetchUserProfile(
+        sessionID: String
+    ) async throws -> UserProfile
     // MARK: - Favorites & Watchlist
 
     func updateMovie(
@@ -34,12 +39,21 @@ protocol AccountRepository: Sendable {
     func fetchUserLists(
         sessionID: String
     ) async throws -> [UserList]
-
+    
+    func fetchListDetails(
+        listID: Int,
+        sessionID: String
+    ) async throws -> UserListDetails
     func createList(
         name: String,
         description: String,
         sessionID: String
     ) async throws -> Int
+
+    func deleteList(
+        listID: Int,
+        sessionID: String
+    ) async throws
 
     func addMovieToList(
         movieID: Int,

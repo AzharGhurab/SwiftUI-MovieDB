@@ -21,6 +21,7 @@ struct MovieSummary: Identifiable, Hashable, Sendable {
     let voteAverage: Double
     let genreIds: [Int]
     var releaseYear: String = ""
+    var mediaType: MediaType = .movie
 
     // MARK: - Poster URL
 

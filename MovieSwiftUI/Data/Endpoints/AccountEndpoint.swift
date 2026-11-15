@@ -41,6 +41,10 @@ enum AccountEndpoint: APIEndpoint {
         accountID: Int,
         sessionID: String
     )
+    case listDetails(
+        listID: Int,
+        sessionID: String
+    )
 
     case createList(
         name: String,
@@ -57,6 +61,10 @@ enum AccountEndpoint: APIEndpoint {
     case removeMovie(
         listID: Int,
         movieID: Int,
+        sessionID: String
+    )
+    case deleteList(
+        listID: Int,
         sessionID: String
     )
 
@@ -82,7 +90,10 @@ enum AccountEndpoint: APIEndpoint {
 
         case .userLists(let accountID, _):
             return "account/\(accountID)/lists"
-
+            
+        case .listDetails(let listID, _):
+            return "list/\(listID)"
+            
         case .createList:
             return "list"
 
@@ -91,6 +102,9 @@ enum AccountEndpoint: APIEndpoint {
 
         case .removeMovie(let listID, _, _):
             return "list/\(listID)/remove_item"
+
+        case .deleteList(let listID, _):
+            return "list/\(listID)"
         }
     }
 
@@ -101,7 +115,8 @@ enum AccountEndpoint: APIEndpoint {
 
         case .accountDetails,
              .movieAccountStates,
-             .userLists:
+             .userLists,
+             .listDetails:
             return .get
 
         case .updateMovie,
@@ -109,6 +124,9 @@ enum AccountEndpoint: APIEndpoint {
              .addMovie,
              .removeMovie:
             return .post
+
+        case .deleteList:
+            return .delete
         }
     }
 
@@ -118,29 +136,34 @@ enum AccountEndpoint: APIEndpoint {
         let sessionID: String
 
         switch self {
-
+            
         case .accountDetails(let session):
             sessionID = session
-
+            
         case .movieAccountStates(_, let session):
             sessionID = session
-
+            
         case .updateMovie(_, _, _, _, let session):
             sessionID = session
-
+            
         case .userLists(_, let session):
             sessionID = session
-
+            
+        case .listDetails(_, let session):
+            sessionID = session
         case .createList(_, _, let session):
             sessionID = session
-
+            
         case .addMovie(_, _, let session):
             sessionID = session
-
+            
         case .removeMovie(_, _, let session):
             sessionID = session
+            
+            
+        case .deleteList(_, let session):
+            sessionID = session
         }
-
         return [
             URLQueryItem(
                 name: "session_id",
@@ -153,10 +176,11 @@ enum AccountEndpoint: APIEndpoint {
 
     var body: Data? {
         switch self {
-
         case .accountDetails,
              .movieAccountStates,
-             .userLists:
+             .userLists,
+             .listDetails,
+             .deleteList:
             return nil
 
         case .updateMovie(
