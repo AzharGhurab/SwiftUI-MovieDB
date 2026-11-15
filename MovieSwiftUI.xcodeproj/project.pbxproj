@@ -70,15 +70,17 @@
 		561AAAC5309C84D8008F4E93 /* UseCases */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = UseCases; sourceTree = "<group>"; };
 		561AAAD4309C85AD008F4E93 /* Configuration */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Configuration; sourceTree = "<group>"; };
 		561AAAD7309C85B7008F4E93 /* DependencyInjection */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = DependencyInjection; sourceTree = "<group>"; };
-		561AAAE9309C9C84008F4E93 /* Models  */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "Models "; sourceTree = "<group>"; };
-		561AAAEA309C9CAC008F4E93 /* DTOs   */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "DTOs  "; sourceTree = "<group>"; };
-		561AAAEB309C9CEA008F4E93 /* Networking  */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "Networking "; sourceTree = "<group>"; };
-		561AAAEC309C9CFD008F4E93 /* AppFlow  */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "AppFlow "; sourceTree = "<group>"; };
+		561AAAE9309C9C84008F4E93 /* Models */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Models; sourceTree = "<group>"; };
+		561AAAEA309C9CAC008F4E93 /* DTOs */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = DTOs; sourceTree = "<group>"; };
+		561AAAEB309C9CEA008F4E93 /* Networking */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Networking; sourceTree = "<group>"; };
+		561AAAEC309C9CFD008F4E93 /* AppFlow */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = AppFlow; sourceTree = "<group>"; };
 		561AAAFF309CAAED008F4E93 /* MainTabBar */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = MainTabBar; sourceTree = "<group>"; };
 		561AAB3F309FD4E0008F4E93 /* Theme */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Theme; sourceTree = "<group>"; };
 		561AAB46309FE3C2008F4E93 /* Components */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Components; sourceTree = "<group>"; };
 		561AAB4A30A02721008F4E93 /* MovieDetails */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = MovieDetails; sourceTree = "<group>"; };
-		561AAB5D30A0328A008F4E93 /* Flows */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Flows; sourceTree = "<group>"; };
+		561AAC0A30A4D2C0008F4E93 /* Lists */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Lists; sourceTree = "<group>"; };
+		561AAC2030A4DED0008F4E93 /* CreateList */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = CreateList; sourceTree = "<group>"; };
+		561AAC3630A8DE19008F4E93 /* ListDetails */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ListDetails; sourceTree = "<group>"; };
 		56B0B6C93097B9B5006BB441 /* Authentication */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Authentication; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
@@ -96,7 +98,7 @@
 		561AAAB1309C843B008F4E93 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				561AAAE9309C9C84008F4E93 /* Models  */,
+				561AAAE9309C9C84008F4E93 /* Models */,
 				561AAABB309C84C7008F4E93 /* Interfaces */,
 				561AAAC5309C84D8008F4E93 /* UseCases */,
 			);
@@ -106,7 +108,7 @@
 		561AAAB2309C844A008F4E93 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				561AAAEA309C9CAC008F4E93 /* DTOs   */,
+				561AAAEA309C9CAC008F4E93 /* DTOs */,
 				561AAAB5309C8498008F4E93 /* Endpoints */,
 				561AAAB8309C84A2008F4E93 /* Repositories */,
 				56B0B6C53097403B006BB441 /* AuthenticationService.swift */,
@@ -119,8 +121,8 @@
 			children = (
 				561AAB46309FE3C2008F4E93 /* Components */,
 				561AAB3F309FD4E0008F4E93 /* Theme */,
-				561AAAEC309C9CFD008F4E93 /* AppFlow  */,
-				561AAAEB309C9CEA008F4E93 /* Networking  */,
+				561AAAEC309C9CFD008F4E93 /* AppFlow */,
+				561AAAEB309C9CEA008F4E93 /* Networking */,
 				561AAAD7309C85B7008F4E93 /* DependencyInjection */,
 			);
 			path = Common;
@@ -139,7 +141,9 @@
 		561AAB4930A0268D008F4E93 /* MoviesScene */ = {
 			isa = PBXGroup;
 			children = (
-				561AAB5D30A0328A008F4E93 /* Flows */,
+				561AAC3630A8DE19008F4E93 /* ListDetails */,
+				561AAC2030A4DED0008F4E93 /* CreateList */,
+				561AAC0A30A4D2C0008F4E93 /* Lists */,
 				561AAB4A30A02721008F4E93 /* MovieDetails */,
 			);
 			path = MoviesScene;
@@ -276,15 +280,17 @@
 				561AAAC5309C84D8008F4E93 /* UseCases */,
 				561AAAD4309C85AD008F4E93 /* Configuration */,
 				561AAAD7309C85B7008F4E93 /* DependencyInjection */,
-				561AAAE9309C9C84008F4E93 /* Models  */,
-				561AAAEA309C9CAC008F4E93 /* DTOs   */,
-				561AAAEB309C9CEA008F4E93 /* Networking  */,
-				561AAAEC309C9CFD008F4E93 /* AppFlow  */,
+				561AAAE9309C9C84008F4E93 /* Models */,
+				561AAAEA309C9CAC008F4E93 /* DTOs */,
+				561AAAEB309C9CEA008F4E93 /* Networking */,
+				561AAAEC309C9CFD008F4E93 /* AppFlow */,
 				561AAAFF309CAAED008F4E93 /* MainTabBar */,
 				561AAB3F309FD4E0008F4E93 /* Theme */,
 				561AAB46309FE3C2008F4E93 /* Components */,
 				561AAB4A30A02721008F4E93 /* MovieDetails */,
-				561AAB5D30A0328A008F4E93 /* Flows */,
+				561AAC0A30A4D2C0008F4E93 /* Lists */,
+				561AAC2030A4DED0008F4E93 /* CreateList */,
+				561AAC3630A8DE19008F4E93 /* ListDetails */,
 				56B0B6C93097B9B5006BB441 /* Authentication */,
 			);
 			name = MovieSwiftUI;

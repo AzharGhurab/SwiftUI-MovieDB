@@ -20,4 +20,10 @@ enum MediaType: String, CaseIterable, Sendable {
         case .tv: return "TV Shows"
         }
     }
+    var singularTitle: String {
+        switch self {
+        case .movie: return "Movie"
+        case .tv: return "TV Show"
+        }
+    }
 }
